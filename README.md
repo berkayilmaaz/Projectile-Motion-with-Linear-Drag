@@ -47,7 +47,7 @@ Lists any academic papers, textbooks, or online resources used in the preparatio
 
 ## Example Plots
 
-![Projectile Trajectory](example_plot.png)
+![Projectile Trajectory](main.png)
 
 ## Author
 
