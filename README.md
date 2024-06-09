@@ -48,6 +48,10 @@ Lists any academic papers, textbooks, or online resources used in the preparatio
 ## Example Plots
 
 ![Projectile Trajectory](graphs/main.png)
+![Projectile Trajectory](graphs/dif%20planet.png)
+![Projectile Trajectory](graphs/graph%20for%20k.png)
+![Projectile Trajectory](graphs/diff%20v.png)
+
 
 ## Author
 
