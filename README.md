@@ -1,4 +1,17 @@
-# Projectile Motion with Linear Drag
+#Projectile Motion with Linear Drag
+<p align="center">
+<img src="assets/brky-logo.png" height="50">
+&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="assets/siths-logo.png" height="50">
+</p>
+
+<p align="center">
+🚀 <b>For a more detailed analysis and interactive visualizations, visit our project website:</b>
+
+
+
+<a href="https://projectile.brky.ai"><b>projectile.brky.ai</b></a>
+</p>
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776ab?logo=python&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green)
@@ -118,6 +131,7 @@ fig.savefig("my_plot.png", dpi=150)
 
 ```
 .
+├── assets/                # Logos and visual assets (brky-logo.png, siths-logo.png)
 ├── projectile_motion.py   # simulation, plotting, animation
 ├── requirements.txt
 └── README.md
