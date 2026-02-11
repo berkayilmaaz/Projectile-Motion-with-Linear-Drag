@@ -1,60 +1,134 @@
-# Projectile Motion with Drag
+# Projectile Motion with Linear Drag
+
+![Python](https://img.shields.io/badge/Python-3.10%2B-3776ab?logo=python&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/Status-Stable-brightgreen)
+
+A numerical simulation of 2D projectile motion under gravity with linear (viscous) air resistance. Compares drag vs. drag-free trajectories and lets you sweep launch angle, drag coefficient, initial velocity, and gravitational acceleration.
+
+Built as a university physics project by **Schrödinger's Siths** — originally a Jupyter notebook, now refactored into a clean standalone module.
+
+---
 
 ## Overview
 
-This project explores the physics of projectile motion with drag. It involves solving differential equations to model the motion of a projectile under the influence of gravity and air resistance. The analysis and simulations are done using standard Python libraries along with Matplotlib for visualization.
+The simulator uses forward Euler integration to solve the equations of motion for a point mass launched at an angle. It produces six-panel static plots, animated GIFs, and parameter-sweep comparisons across angles, drag coefficients, planets, and velocities.
 
-## Contents
+**What you get:**
 
-The notebook includes the following sections:
+- Side-by-side comparison of drag vs. no-drag trajectories
+- Animated 6-panel dashboard (saved as `.gif`)
+- Parameter sweeps with clean dark-themed plots
+- Drag coefficient vs. landing distance analysis
 
-### Introduction
+---
 
-Provides an overview of the project, the physical principles behind projectile motion, and the effects of air resistance.
+## The Physics Behind It
 
-### Mathematical Model
+We model a projectile of mass $m$ subject to gravity $\vec{g}$ and a **linear drag force** proportional to velocity:
 
-Details the mathematical formulation of the problem, including the differential equations that describe the motion of a projectile with drag.
+$$
+\vec{F}_{\text{drag}} = -k\,\vec{v}
+$$
 
-### Numerical Solution
+where $k$ is the drag coefficient in $\text{kg/s}$. Applying Newton's second law:
 
-Describes the numerical methods used to solve the differential equations using Python's standard library. Methods such as Euler's method or Runge-Kutta methods are implemented manually without the use of specialized scientific libraries.
+$$
+m\,\vec{a} = m\,\vec{g} - k\,\vec{v}
+$$
 
-### Simulation and Results
+Splitting into components with $\gamma = k/m$:
 
-Presents the results of the simulations, including plots and graphs that illustrate the trajectory of the projectile under different conditions. Discusses the impact of varying parameters like initial velocity, angle of launch, and drag coefficient.
+$$
+\ddot{x} = -\gamma\,\dot{x}
+$$
 
-### Conclusion
+$$
+\ddot{y} = -g - \gamma\,\dot{y}
+$$
 
-Summarizes the findings and discusses potential extensions of the project, such as considering different shapes of projectiles or varying atmospheric conditions.
+These are first-order-reducible ODEs. The horizontal component has an analytical solution:
 
-### References
+$$
+v_x(t) = v_{x0}\,e^{-\gamma t}
+\quad\Rightarrow\quad
+x(t) = \frac{m\,v_{x0}}{k}\left(1 - e^{-\gamma t}\right)
+$$
 
-Lists any academic papers, textbooks, or online resources used in the preparation of the project.
+The vertical component doesn't separate as cleanly due to gravity, so we integrate both numerically using the Euler method:
 
-## How to Run
+$$
+v_{x}^{n+1} = v_{x}^{n} - \gamma\,v_{x}^{n}\,\Delta t
+$$
 
-1. Ensure you have Python installed, along with Matplotlib.
-2. Clone this repository to your local machine.
-3. Open the Jupyter notebook `Projectile_Motion_with_Drag.ipynb`.
-4. Run the cells sequentially to reproduce the results.
+$$
+v_{y}^{n+1} = v_{y}^{n} - (g + \gamma\,v_{y}^{n})\,\Delta t
+$$
 
-## Requirements
+$$
+x^{n+1} = x^{n} + v_{x}^{n}\,\Delta t, \qquad
+y^{n+1} = y^{n} + v_{y}^{n}\,\Delta t
+$$
 
-- Python 3.x
-- Jupyter Notebook
-- Matplotlib
+**Note on drag models:** This project uses *linear* drag ($F \propto v$), appropriate for low Reynolds number regimes (slow, small objects in viscous media). For high-speed projectiles in air, *quadratic* drag ($F \propto v^2$) would be more realistic — but the linear model keeps the math tractable and still demonstrates the core physics clearly.
 
-## Example Plots
+### Default parameters
 
-![Projectile Trajectory](graphs/main.png)
-![Projectile Trajectory](graphs/dif%20planet.png)
-![Projectile Trajectory](graphs/graph%20for%20k.png)
-![Projectile Trajectory](graphs/diff%20v.png)
+| Symbol | Value | Description |
+|--------|-------|-------------|
+| $m$ | 5.0 kg | Projectile mass |
+| $k$ | 0.1 kg/s | Linear drag coefficient |
+| $g$ | 9.81 m/s² | Gravitational acceleration |
+| $v_0$ | 50.0 m/s | Initial speed |
+| $\theta$ | 15° | Launch angle |
+| $\Delta t$ | 0.01 s | Integration time step |
 
+---
 
-## Author
+## Installation & Usage
 
-[Berkay Yılmaz](https://github.com/berkayyilmaz)
-[Ahmet ali Akkurt](https://github.com/Ahmetaliakkurt)
-Livanur Çelik
+```bash
+git clone https://github.com/your-username/projectile-motion-drag.git
+cd projectile-motion-drag
+pip install -r requirements.txt
+```
+
+**Run the full simulation:**
+
+```bash
+python projectile_motion.py
+```
+
+This generates all static plots (`.png`), an animated GIF (`trajectory_animation.gif`), and opens the matplotlib viewer.
+
+**Use as a library:**
+
+```python
+from projectile_motion import SimulationParams, calculate_trajectory, plot_static
+
+params = SimulationParams(v0=60.0, angle_deg=30.0, k=0.15)
+drag, no_drag = calculate_trajectory(params)
+fig = plot_static(drag, no_drag)
+fig.savefig("my_plot.png", dpi=150)
+```
+
+---
+
+## Project Structure
+
+```
+.
+├── projectile_motion.py   # simulation, plotting, animation
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## Team
+
+| Name | ID | Email |
+|------|----|-------|
+| Berkay Yılmaz | 120520022 | berkayyilmaz20@marun.edu.tr |
+| Ahmet Ali Akkurt | 120520041 | ahmetakkurt@marun.edu.tr |
+| Livanur Çelik | 120521026 | livanurcelik@marun.edu.tr |
