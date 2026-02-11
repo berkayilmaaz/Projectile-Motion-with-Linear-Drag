@@ -1,8 +1,8 @@
 #Projectile Motion with Linear Drag
 <p align="center">
-<img src="assets/brky-logo.png" height="50">
+<img src="assets/brky-logo.png" height="120">
 &nbsp;&nbsp;&nbsp;&nbsp;
-<img src="assets/siths-logo.png" height="50">
+<img src="assets/siths-logo.png" height="120">
 </p>
 
 <p align="center">
