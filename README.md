@@ -88,8 +88,8 @@ $$
 ## Installation & Usage
 
 ```bash
-git clone https://github.com/your-username/projectile-motion-drag.git
-cd projectile-motion-drag
+git clone https://github.com/berkayilmaaz/Projectile-Motion-with-Linear-Drag.git
+cd Projectile-Motion-with-Linear-Drag
 pip install -r requirements.txt
 ```
 
@@ -127,8 +127,8 @@ fig.savefig("my_plot.png", dpi=150)
 
 ## Team
 
-| Name | ID | Email |
-|------|----|-------|
-| Berkay Yılmaz | 120520022 | berkayyilmaz20@marun.edu.tr |
-| Ahmet Ali Akkurt | 120520041 | ahmetakkurt@marun.edu.tr |
-| Livanur Çelik | 120521026 | livanurcelik@marun.edu.tr |
+| Name | Email |
+|------|-------|
+| Berkay Yılmaz | contact@brky.ai |
+| Ahmet Ali Akkurt  | ahmetakkurt@marun.edu.tr |
+| Livanur Çelik | livanurcelik@marun.edu.tr |
